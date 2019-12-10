@@ -1,5 +1,5 @@
 # zhwl_mpc_follower
-无人测试车轨迹跟踪MPC测试程序
+无人测试车轨迹跟踪MPC程序
 
 
  # reference 
