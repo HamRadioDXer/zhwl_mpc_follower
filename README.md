@@ -80,11 +80,13 @@
 - kinematics_no_delay : bicycle kinematics model without steering delay
 - dynamics : bicycle dynamics model considering slip angle
 
-
-1. 设置适当的车辆运动性能的参数`wheelbase，steering_gear_ratio和steer_lim_deg`。还要检查`/vehicle_status`主题是否具有适当的值（速度：车辆后轮中心速度[km / h]，角度：转向（轮胎）角度[rad]）。这些值将车辆信息提供给控制器以进行路径跟踪。这些值中的错误会导致基本的跟踪错误。这些值是否正确，可以通过比较从模型（`/mpc_follower/debug/angvel_from_steer`）获得的角速度和实际角速度（例如`/estimate_twist/angular/z`）来确认。
+# 调试
+1. 设置适当的车辆运动性能的参数`wheelbase，steering_gear_ratio和steer_lim_deg`。还要检查`/vehicle_status`主题是否具有适当的值（速度：车辆后轮中心速度[km/h]，角度：转向（轮胎）角度[rad]）。这些值将车辆信息提供给控制器以进行路径跟踪。这些值中的错误会导致基本的跟踪错误。这些值是否正确，可以通过比较从模型（`/mpc_follower/debug/angvel_from_steer`）获得的角速度和实际角速度（例如`/estimate_twist/angular/z`）来确认。
 2. 设置适当的车辆动力学参数steering_tau，该参数是从转向角命令到实际转向角的近似延迟。
 3. 设置weight_steering_input= 1.0，weight_lat_error= 0.1，并将其他权重设置为0。如果在低速行驶时车辆振动，则将其`weight_lat_error`减小。
-4. 其他权重的调整。调整的一种简单方法是增加`weight_lat_error`直到发生振荡。如果车辆不稳定且`weight_lat_error`跟小，则增加 `weight_terminal_lat_error``和weight_terminal_heading_error`提高跟踪稳定性。较大prediction_horizon和较小prediction_sampling_time对跟踪性能都是有效的，但是这是计算成本之间的折衷。其他参数可以如下调整。
+4. 其他权重的调整。调整的一种简单方法是增加`weight_lat_error`直到发生振荡。如果车辆不稳定且`weight_lat_error`跟小，则增加 `weight_terminal_lat_error``和weight_terminal_heading_error`提高跟踪稳定性。较大prediction_horizon和较小prediction_sampling_time对跟踪性能都是有效的，但是这是计算成本之间的折衷。
+
+>其他参数可以如下调整。
 
 - weight_lat_error：减少横向跟踪误差。这就像PID中的P增益一样。
 - weight_heading_error：将驱动器弄直。这就像PID中的D增益一样。
@@ -99,7 +101,7 @@
 
 
 
- # reference 
+ # 参考 
 
  [1] Jarrod M. Snider, "Automatic Steering Methods for Autonomous Automobile Path Tracking", Robotics Institute, Carnegie Mellon University, February 2009.
 
