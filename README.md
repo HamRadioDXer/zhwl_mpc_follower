@@ -1,4 +1,4 @@
-# MPC follower 文档
+# MPC follower 说明
 ### 简介
 基于模型预测控制（MPC）的航路点跟踪器，用于精确的路径跟踪。可以将它用作waypoint_follower，以及其他跟随节点的路径（例如pure_pursuit）。
 
