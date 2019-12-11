@@ -1,3 +1,12 @@
+
+
+
+
+<html>
+  <embed src="//music.163.com/style/swf/widget.swf?sid=26203407&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+</html>
+
+
 # MPC follower 说明
 ### 简介
 基于模型预测控制（MPC）的航路点跟踪器，用于精确的路径跟踪。可以将它用作waypoint_follower，以及其他跟随节点的路径（例如pure_pursuit）。
