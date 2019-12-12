@@ -20,9 +20,9 @@
 ---
 ## 节点的订阅和发布参考
 - input
-  - /mpc_waypoints : reference waypoints (generated in mpc_waypoints_converter)
-  - /current_pose : self pose
-  - /vehicle_status : vehicle information (as velocity and steering angle source)
+  - /mpc_waypoints : reference waypoints局部路点供mpc结算的那部分 (generated in mpc_waypoints_converter)
+  - /current_pose : self pose（可以是定位模块的定位结果）
+  - /vehicle_status : vehicle information 从测试车中读取速度转向角扭矩等等(as velocity and steering angle source)
  - output
     - /twist_raw : command for vehicle
     - /ctrl_raw : command for vehicle
@@ -85,9 +85,9 @@
 
 ## 车辆模型参数
 
-- kinematics（default） : bicycle kinematics model with steering 1st-order delay
-- kinematics_no_delay : bicycle kinematics model without steering delay
-- dynamics : bicycle dynamics model considering slip angle
+- kinematics（default） : (自相车模型)bicycle kinematics model with steering 1st-order delay
+- kinematics_no_delay : （无转向延迟的自行车模型）bicycle kinematics model without steering delay
+- dynamics : （动态建模，考虑侧滑偏移）bicycle dynamics model considering slip angle
 
 # 调试
 1. 设置适当的车辆运动性能的参数`wheelbase，steering_gear_ratio和steer_lim_deg`。还要检查`/vehicle_status`主题是否具有适当的值（速度：车辆后轮中心速度[km/h]，角度：转向（轮胎）角度[rad]）。这些值将车辆信息提供给控制器以进行路径跟踪。这些值中的错误会导致基本的跟踪错误。这些值是否正确，可以通过比较从模型（`/mpc_follower/debug/angvel_from_steer`）获得的角速度和实际角速度（例如`/estimate_twist/angular/z`）来确认。
@@ -98,17 +98,17 @@
 >其他参数可以如下调整。
 
 - weight_lat_error：减少横向跟踪误差。这就像PID中的P增益一样。
-- weight_heading_error：将驱动器弄直。这就像PID中的D增益一样。
-- weight_heading_error_squared_vel_coeff ：在高速范围内直线驱动器。
-- weight_steering_input：减少跟踪的振荡。
+- weight_heading_error：增加驱动器的动态响应能力。这就像PID中的D增益一样。
+- weight_heading_error_squared_vel_coeff ：在高速范围内动态响应。
+- weight_steering_input：减少跟踪中的振荡。
 - weight_steering_input_squared_vel_coeff：减少高速范围内跟踪的振荡。
 - weight_lat_jerk：减少侧向晃动。
-- weight_terminal_lat_error：weight_lat_error为稳定起见，最好将其值设定为比正常侧向重量更大的值。
-- weight_terminal_heading_error：weight_heading_error为了稳定起见，最好将其设置为比正常航向重量更大的值。
+- weight_terminal_lat_error：weight_lat_error为稳定起见，最好将其值设定为比正常侧向权重更大的值。
+- weight_terminal_heading_error：weight_heading_error为了稳定起见，最好将其设置为比正常航向权值更大的值。
 
 
 
-
+权zhi
 
  # 参考 
 
