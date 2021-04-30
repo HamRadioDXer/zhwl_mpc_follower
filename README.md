@@ -1,10 +1,9 @@
 
 
+# 上传内容 和账号拥有者无关，申诉联系870946864@qq.com
 
 
-<html>
-  <embed src="//music.163.com/style/swf/widget.swf?sid=26203407&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
-</html>
+
 
 
 # MPC follower 说明
